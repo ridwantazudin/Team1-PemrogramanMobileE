@@ -247,10 +247,11 @@ class LatestNewsCard extends StatelessWidget {
                     ),
                     child: AspectRatio(
                       aspectRatio: 1 / 1,
-                      child: Image.network(
-                        news.banner,
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.network(news.banner, fit: BoxFit.cover,
+                          errorBuilder: (BuildContext context, Object exception,
+                              StackTrace? stackTrace) {
+                        return const Text('Image not found');
+                      }),
                     ),
                   ),
                 ),
@@ -259,24 +260,29 @@ class LatestNewsCard extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           news.title,
                           maxLines: 1,
                           style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
-                          ),
+                              fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
-                          height: 6,
+                          height: 2,
+                        ),
+                        Text(
+                          news.date,
+                          style: const TextStyle(
+                            fontSize: 8,
+                          ),
                         ),
                         Text(
                           news.content,
                           maxLines: 3,
                           style: const TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w300,
+                            // fontWeight: FontWeight.w300,
                           ),
                         ),
                       ],
@@ -306,8 +312,9 @@ class LatestNewsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: newsList.map((news) => LatestNewsCard(size: size, news: news)).toList()
-    );
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: newsList
+            .map((news) => LatestNewsCard(size: size, news: news))
+            .toList());
   }
 }

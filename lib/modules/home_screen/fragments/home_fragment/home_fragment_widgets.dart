@@ -234,6 +234,7 @@ class LatestNewsCard extends StatelessWidget {
                 params: {
                   "id": news.id.toString(),
                 },
+                extra: news,
               );
             },
             child: Row(
@@ -264,25 +265,19 @@ class LatestNewsCard extends StatelessWidget {
                       children: [
                         Text(
                           news.title,
-                          maxLines: 1,
+                          maxLines: 2,
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          news.date,
-                          style: const TextStyle(
-                            fontSize: 8,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Text(
-                          news.content,
-                          maxLines: 3,
+                          "by ${news.author} - ${news.date}",
                           style: const TextStyle(
-                            fontSize: 12,
-                            // fontWeight: FontWeight.w300,
+                            fontSize: 10,
                           ),
                         ),
                       ],

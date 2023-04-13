@@ -30,7 +30,7 @@ List<News> newsList = [
         author: "Jayadi Supriadin",
         banner: "https://cdn1-production-images-kly.akamaized.net/iV9j8yo9oLOy0bPHQlu39c7nG2A=/1280x720/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4390820/original/056121400_1681202223-Longsor_Cisewu_Garut.jpg",
         date: "11 April 2023",
-        content: ': Liputan6.com, Garut - Jalur lalu lintas provinsi Jawa Barat yang menghubungkan Kabupaten Garut – Kabupaten Bandung via Kecamatan Talegong, Kabupaten Garut, terputus setelah tertutup material longsor. Hujan dengan intensitas cukup tinggi pada Senin (10/4/2023) malam, mengakibatkan longsor di Blok Awisuti, Desa Sukamulya, Kecamatan Talegong Garut, tertutup material tanah dan bebatuan yang menyebabkan jalur itu terputus. Kepala pelaksana BPBD Garut Satria Budi menyatakan, tertutupnya akses jalur provinsi Garut-Bandung via Talegong itu, murni akibat musibah longsor. “Curah hujan cukup tinggi,” ujarnya, Selasa (11/4/2023)'
+        content: 'Liputan6.com, Garut - Jalur lalu lintas provinsi Jawa Barat yang menghubungkan Kabupaten Garut – Kabupaten Bandung via Kecamatan Talegong, Kabupaten Garut, terputus setelah tertutup material longsor. Hujan dengan intensitas cukup tinggi pada Senin (10/4/2023) malam, mengakibatkan longsor di Blok Awisuti, Desa Sukamulya, Kecamatan Talegong Garut, tertutup material tanah dan bebatuan yang menyebabkan jalur itu terputus. Kepala pelaksana BPBD Garut Satria Budi menyatakan, tertutupnya akses jalur provinsi Garut-Bandung via Talegong itu, murni akibat musibah longsor. “Curah hujan cukup tinggi,” ujarnya, Selasa (11/4/2023)'
     ),
     News(
         id: 2,
@@ -39,7 +39,7 @@ List<News> newsList = [
         author: " Eko Prasetya",
         banner: "https://cdns.klimg.com/merdeka.com/i/w/news/2023/04/11/1541035/670x335/anas-urbaningrum-bebas-keluarga-di-blitar-sambut-kepulangan-untuk-bertemu-ibunda.jpg",
         date: "Selasa, 11 April 2023 18:33",
-        content: ':nas Urbaningrum merupakan mantan Ketua Umum Partai Demokrat. Ia mendekam di penjara dalam kasus korupsi proyek pembangunan pusat pendidikan, pelatihan dan sekolah olahraga nasional (P3SON) Hambalang. Anas divonis oleh Majelis hakim delapan tahun penjara. Selain dihukum delapan tahun penjara, hak politik Anas Urbaningrum juga dicabut. Ia dilarang dipilih selama lima tahun sejak bebas dari penjara. Saat ini Anas sudah resmi keluar dari Lapas Sukamiskin, Bandung, dijemput para loyalisnya. Mereka semua mengenakan baju dengan warna serupa yakni putih.'
+        content: 'Urbaningrum merupakan mantan Ketua Umum Partai Demokrat. Ia mendekam di penjara dalam kasus korupsi proyek pembangunan pusat pendidikan, pelatihan dan sekolah olahraga nasional (P3SON) Hambalang. Anas divonis oleh Majelis hakim delapan tahun penjara. Selain dihukum delapan tahun penjara, hak politik Anas Urbaningrum juga dicabut. Ia dilarang dipilih selama lima tahun sejak bebas dari penjara. Saat ini Anas sudah resmi keluar dari Lapas Sukamiskin, Bandung, dijemput para loyalisnya. Mereka semua mengenakan baju dengan warna serupa yakni putih.'
     ),
     News(
         id: 3,

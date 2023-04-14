@@ -14,6 +14,26 @@ class ProfileDetail extends StatefulWidget {
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool isVisibilityPassword = false;
+
+  @override
+  void initState() {
+    if(widget.user.name != null) {
+      _nameController.text = widget.user.name;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +63,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     ),
                     child: const Icon(
                       Icons.chevron_left_rounded,
-                      ),
                     ),
+                  ),
                 ),
                 const SizedBox(
                   width: 8,
@@ -63,22 +83,103 @@ class _ProfileDetailState extends State<ProfileDetail> {
             height: 16,
           ),
           Expanded(
-            child: Column(
-            children: [],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ),
+                    child: TextFormField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        label: const Text("Nama"),
+                        hintText: "Contoh : Lucinta Team 1",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return "Nama wajib diisi";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      obscureText: !isVisibilityPassword,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        label: const Text("Password"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isVisibilityPassword = !isVisibilityPassword;
+                            });
+                          },
+                          icon: Icon(
+                            isVisibilityPassword == false
+                                ? Icons.visibility
+                                : Icons.visibility_off_rounded,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return "Password wajib diisi";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-            padding: const EdgeInsets.all(16),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(16)
+          GestureDetector(
+            onTap: () {
+              if (_formKey.currentState!.validate()) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Column(
+                      children: [
+                        Text(
+                          "SUKSES",
+                        ),
+                        Text(
+                          "Anda telah berhasil mengubah data diri anda",
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }
+              ;
+            },
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(16)),
+              child: const Center(
+                child: Text("SIMPAN"),
+              ),
             ),
-          child: const Center(
-            child: Text("SIMPAN",
-            ),
-          ),
           )
         ],
       ),

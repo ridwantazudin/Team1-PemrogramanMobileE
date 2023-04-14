@@ -107,37 +107,44 @@ class NewsFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          TextField(
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              isDense: true,
-              hintText: "Masukkan kata kunci disini",
-              filled: true,
-              fillColor: Colors.grey[200],
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(16),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextField(
+                  textInputAction: TextInputAction.search,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: "Masukkan kata kunci disini",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    suffixIcon: const Icon(
+                      Icons.search_rounded,
+                    ),
+                  ),
+                ),
               ),
-              suffixIcon: const Icon(
-                Icons.search_rounded,
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: newsList
+                        .map((news) => NewsCard(size: size, news: news))
+                        .toList(),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: newsList
-                    .map((news) => NewsCard(size: size, news: news))
-                    .toList(),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }

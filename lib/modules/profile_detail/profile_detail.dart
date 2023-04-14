@@ -21,7 +21,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
 
   @override
   void initState() {
-    if(widget.user.name != null) {
+    if (widget.user.name != null) {
       _nameController.text = widget.user.name;
     }
     super.initState();
@@ -87,6 +87,21 @@ class _ProfileDetailState extends State<ProfileDetail> {
               key: _formKey,
               child: Column(
                 children: [
+                  Container(
+                    width: 200,
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    child: AspectRatio(
+                      aspectRatio: 1 / 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(widget.user.profilePhoto),
+                                fit: BoxFit.cover),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100))),
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -155,10 +170,14 @@ class _ProfileDetailState extends State<ProfileDetail> {
               if (_formKey.currentState!.validate()) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
+                    backgroundColor: Colors.green,
                     content: Column(
                       children: [
                         Text(
                           "SUKSES",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           "Anda telah berhasil mengubah data diri anda",
@@ -177,7 +196,13 @@ class _ProfileDetailState extends State<ProfileDetail> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(16)),
               child: const Center(
-                child: Text("SIMPAN"),
+                child: Text(
+                  "SIMPAN",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
             ),
           )

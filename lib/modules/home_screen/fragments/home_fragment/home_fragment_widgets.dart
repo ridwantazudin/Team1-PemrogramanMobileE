@@ -171,7 +171,10 @@ class HotestNewsCard extends StatelessWidget {
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            color: Colors.black45,
+            decoration: BoxDecoration(
+              color: Colors.black54,
+              borderRadius: BorderRadius.circular(20)
+            ),
             child: ListTile(
               title: Text(
                 news.title,

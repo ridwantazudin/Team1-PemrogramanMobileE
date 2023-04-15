@@ -27,8 +27,14 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             color: Colors.black,
           ),
           actions: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.share),),
-            IconButton(onPressed: (){}, icon: Icon(Icons.more_horiz),),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.share),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.more_horiz),
+            ),
           ],
         ),
         body: SingleChildScrollView(
@@ -38,13 +44,21 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: MediaQuery.of(context).padding.top,
+                ),
                 Container(
-                  height: 325,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    image: DecorationImage(
-                      image: NetworkImage(widget.news.banner),
-                      fit: BoxFit.cover,
+                  width: double.infinity,
+                  child: AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
+                        image: DecorationImage(
+                          image: NetworkImage(widget.news.banner),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -54,28 +68,35 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        const Text("by "),
-                        Text(
-                          widget.news.author,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                    Flexible(
+                      flex: 1,
+                      child: Row(
+                        children: [
+                          const Text("by "),
+                          Text(
+                            widget.news.author,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.remove_red_eye,
-                          size: 16,
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text("${widget.news.views}"),
-                      ],
+                    Flexible(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.remove_red_eye,
+                            size: 16,
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text("${widget.news.views}"),
+                        ],
+                      ),
                     )
                   ],
                 ),

@@ -100,6 +100,63 @@ class NewsCard extends StatelessWidget {
   }
 }
 
+class Categorylist extends StatefulWidget {
+  @override
+  _CategorylistState createState() => _CategorylistState();
+}
+
+class _CategorylistState extends State<Categorylist> {
+  int selectedCategory = 0;
+  List<String> categories = ["Semua", "Politik", "Indonesia", "Dunia", "Sepak Bola", "Ekonomi", "Teknologi"];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      height: 40,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) => buildCategory(index, context),
+      ),
+    );
+  }
+
+  Padding buildCategory(int index, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedCategory = index;
+          });
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              categories[index],
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: index == selectedCategory ? Colors.blue : Colors.black.withOpacity(0.5),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              height: 3,
+              width: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: index == selectedCategory ? Colors.blue : Colors.transparent,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class NewsFragment extends StatelessWidget {
   const NewsFragment({super.key});
 
@@ -131,6 +188,7 @@ class NewsFragment extends StatelessWidget {
                   ),
                 ),
               ),
+              Categorylist(),
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,

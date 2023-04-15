@@ -77,7 +77,7 @@ class HeaderWidget extends StatelessWidget {
           },
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-              user.profilePhoto!,
+              user.profilePhoto,
             ),
           ),
         ),
@@ -166,19 +166,17 @@ class HotestNewsCard extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(news.banner), fit: BoxFit.cover),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black54,
-              borderRadius: BorderRadius.circular(20)
-            ),
+                color: Colors.black54, borderRadius: BorderRadius.circular(20)),
             child: ListTile(
               title: Text(
                 news.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -300,12 +298,40 @@ class LatestNewsSection extends StatelessWidget {
 
   final Size size;
 
+  Future<List<News>> _getNewsList() async {
+    var data = await newsList;
+
+    List<News> newsData = [];
+
+    for (var n in data) {
+      Future.delayed(Duration(seconds: 10));
+      News news = n;
+      newsData.add(news);
+    }
+
+    return newsData;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: newsList
-            .map((news) => LatestNewsCard(size: size, news: news))
-            .toList());
+    return FutureBuilder(
+      future: _getNewsList(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.data == null) {
+          return Container(
+            child: Center(
+              child: Text("Loading..."),
+            ),
+          );
+        } else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: newsList
+                .map((news) => LatestNewsCard(size: size, news: news))
+                .toList(),
+          );
+        }
+      },
+    );
   }
 }

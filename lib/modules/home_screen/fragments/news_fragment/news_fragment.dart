@@ -160,6 +160,19 @@ class _CategorylistState extends State<Categorylist> {
 class NewsFragment extends StatelessWidget {
   const NewsFragment({super.key});
 
+  Future<List<News>> _getNewsList() async {
+    var data = await newsList;
+
+    List<News> newsData = [];
+
+    for (var n in data) {
+      News news = n;
+      newsData.add(news);
+    }
+
+    return newsData;
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -192,10 +205,23 @@ class NewsFragment extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: newsList
-                        .map((news) => NewsCard(size: size, news: news))
-                        .toList(),
+                  child: FutureBuilder(
+                    future: _getNewsList(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == null) {
+                        return Container(
+                          child: Center(
+                            child: Text("Loading..."),
+                          ),
+                        );
+                      } else {
+                        return Column(
+                        children: newsList
+                            .map((news) => NewsCard(size: size, news: news))
+                            .toList(),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),
